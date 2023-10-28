@@ -1,0 +1,93 @@
+table {
+    font-size: large;
+}
+
+
+
+
+td {
+    text-align: center;
+    width: 25px;
+    height: 25px;
+}
+
+
+a {
+    color : black;
+}
+
+
+div {
+    border: 5px solid black;
+    padding: 5px;
+}
+
+.dif-selector {
+    background-color: aquamarine;
+}
+
+
+.lowered {
+    background-color: lightgray;
+}
+
+.raised {
+    background-color: rgb(165, 165, 165);
+}
+
+
+.hidden {
+    color: rgb(165, 165, 165);
+}
+
+
+
+
+a:link{
+    text-decoration: none;
+}
+
+a:visited {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+a:active {
+    text-decoration: none;
+}
+
+
+.color1 {
+    color: blue;
+}
+
+.color2 {
+    color :rgb(8, 135, 72);
+}
+
+.color3 {
+    color :red;
+}
+
+.color4 {
+    color :rgb(90, 5, 227);
+}
+
+.color5 {
+    color: rgb(166, 53, 8);
+}
+
+.color6 {
+    color: rgb(3, 160, 166);
+}
+
+.color7 {
+    color:black;
+}
+
+.color8 {
+    color: darkgray;
+}

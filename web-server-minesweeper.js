@@ -3,7 +3,7 @@ var url = require('url');
 var fs = require('fs');
 const ip = require('ip');
 const { timeStamp } = require('console');
-
+ 
 var portnumber = 3001;
 
 myServer = http.createServer(handleRequests);
@@ -97,7 +97,7 @@ function generateMap(difficulty, seed) {
 
         var x = Math.ceil(width * seededRandom()) - 1;
         var y = Math.ceil(height * seededRandom()) - 1;
-        if (!map[x][y].isMine && x > 4 && y > 2) {     // possible to set a new mine?
+        if (!map[x][y].isMine && (x > 4 || y > 2)) {     // possible to set a new mine?
             map[x][y].isMine = true;
 
 

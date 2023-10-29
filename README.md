@@ -53,14 +53,11 @@ $$
 The total amount of bytes send within a ``game`` $bg(w,h)$ would atleast be:
 
 $$
-bg(w,h) = \sum_{n}^{w*h} \left(bm(w,h,n)\right)
+bg(w,h) = \sum_{n=0}^{w*h} \left(bm(w,h,n)\right)
 $$
 
 
-For difficulty ``hard`` the total byte count $bg(30,16)$ is 393.852.960 B. That's 375,607 MB
-
-
-
+For difficulty ``hard`` the total byte count $bg(30,16)$ is 393.852.960 B. That's 375,607 MB, with my upload speed between 1-6 Mbit/s that will be ~ 8-50min to upload to a single user. 😢
 
 
 ### sample url for a solved mid difficulty game

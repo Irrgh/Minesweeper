@@ -6,6 +6,8 @@ function b (x,y) {
             Math.floor(Math.log10(y+1)));
 }
 
+
+
 function bm (w,h,s) {
 
     var res = 0;
@@ -35,3 +37,4 @@ function bg (w,h) {
 }
 
 
+console.log(bg(40,25));

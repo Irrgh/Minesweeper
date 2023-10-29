@@ -13,8 +13,52 @@ minesweeper:seed:tool [tool.x.y]
 
 The ``seed`` is used to initialize ``seededRandom()`` in order regenerate the ``map``.
 Afterwards ``actions`` are executed step by step to bring the ``map`` into it's new state.
-``newAction``'s are generated based on the chosen ``tool`` and the position of the ``<a>`` in the table.
+``newAction``s are generated based on the chosen ``tool`` and the position of the ``<a>`` in the table.
 The ``map`` is then converted into a new ``<table>`` of ``<a href=${link}>`` where ``link = request-url.append(newAction)``.
+
+---
+
+## Performance issues
+
+Depending on difficulty of the game the Map size changes.
+
+| Difficutly | Height | Width | 
+| ---------- | ----- | -------|
+| Easy | 10 | 10 |
+| Mid  | 16 | 16 |
+| Hard | 16 | 30 |
+| Insane | 20 | 45 |
+
+The smallest ``action`` that can be performed is something like ``-s.0.0`` meaning each ``action`` add atleast 6 bytes per tile to send.
+
+
+### Worst-case
+
+
+To complete a game of minesweeper in the **absolute** ``worst-case`` (which is impossible to solve) you would need to search or flag every tile. Meaning you have to perform ``height * width`` actions. The number of bytes $b(x,y)$ required to send an ``action`` would be: 
+$$ 
+b(x,y) = 6 + \lfloor \log_{10}{x+1}\rfloor + \lfloor \log_{10}{y+1}\rfloor $$
+
+Which result in the total amount of bytes send in a ``map`` $bm(w,h,s)$ being:
+
+$$
+bm(w,h,s) = \sum_{n = 0}^{s} \left(
+            \sum_{x = 0}^{w} \left(
+            \sum_{y = 0}^{h}\left(b(x,y)
+            \right)  \right) \right)
+$$
+
+The total amount of bytes send within a ``game`` $bg(w,h)$ would atleast be:
+
+$$
+bg(w,h) = \sum_{n}^{w*h} \left(bm(w,h,n)\right)
+$$
+
+
+For difficulty ``hard`` the total byte count $bg(30,16)$ is 393.852.960 B. That's 375,607 MB
+
+
+
 
 
 ### sample url for a solved mid difficulty game

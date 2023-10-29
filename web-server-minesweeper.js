@@ -43,10 +43,13 @@ myServer.listen(portnumber);
 console.log("Now listening on port " + portnumber);
 
 
-const debug = { height: 5, width: 5, mines: 2 };
-const easy = { height: 10, width: 10, mines: 10 };
-const mid = { height: 16, width: 16, mines: 40 };
-const hard = { height: 16, width: 30, mines: 99 };
+const easy = {name: "easy", height: 10, width: 10, mines: 10 };
+const mid = {name: "mid", height: 16, width: 16, mines: 40 };
+const hard = {name:"hard", height: 16, width: 30, mines: 99 };
+const insane = {name:"insane", height: 20, width: 45, mines: 250 };
+
+const difficulties = [easy,mid,hard,insane];
+
 
 function createSeededRandomGenerator(seed) {
     // Constants for the linear congruential generator algorithm
@@ -215,7 +218,7 @@ function executeSteps(map, steps) {
 
             //console.log(`unveal at: ${x},${y}`);
 
-            map = unveal(map, x, y);
+            map = unveil(map, x, y);
         } else {
             //console.log(steps[i]);
         }
@@ -233,7 +236,7 @@ function toggleFlag(map, x, y) {
 
 
 
-function unveal(map, x, y) {
+function unveil(map, x, y) {
 
 
     var width = map.length;
@@ -247,7 +250,7 @@ function unveal(map, x, y) {
         for (var i = -1; i < 2; i++) {
             for (var j = -1; j < 2; j++) {
                 if (j + x < width && j + x >= 0 && i + y < height && i + y >= 0) {      // increment nearby mines
-                    map = unveal(map, x + j, y + i);
+                    map = unveil(map, x + j, y + i);
                 }
             }
         }
@@ -297,12 +300,35 @@ function countFlags(map) {
 }
 
 
+function difficultyInfoAndLink (seed, dif) {
+
+    return `
+    <div><a href="./minesweeper:${dif.name}:${seed}:search" class="dif-selector">${dif.name}
+            <ul>
+                <li>width: ${dif.width}</li>
+                <li>height: ${dif.height}</li>
+                <li>mines: ${dif.mines}</li>
+            </ul>
+            </a>
+        </div>
+    `
+    
+}
+
+
+
 
 
 function selectDifficulty() {
 
     let seed = Math.floor(1000 * Math.random()) / 1;
 
+
+    let str = "";
+
+    for (var i = 0; i < difficulties.length;i++) {
+        str += difficultyInfoAndLink(seed, difficulties[i]);
+    }
 
     return `<html>
         <title>Multipage Minesweeper</title>
@@ -312,37 +338,7 @@ function selectDifficulty() {
         <body>
         <h1>Multipage Minesweeper</h1>
         <h3>Please Select a difficulty</h3>
-
-        <div><a href="./minesweeper:easy:${seed}:search" class="dif-selector">Easy
-            <ul>
-                <li>width: ${easy.width}</li>
-                <li>height: ${easy.height}</li>
-                <li>mines: ${easy.mines}</li>
-            </ul>
-            </a>
-        </div>
-
-        <div><a href="./minesweeper:mid:${seed}:search" class="dif-selector">Mid
-            <ul>
-                <li>width: ${mid.width}</li>
-                <li>height: ${mid.height}</li>
-                <li>mines: ${mid.mines}</li>
-            </ul>
-            </a>
-        </div>
-
-        <div><a href="./minesweeper:hard:${seed}:search" class="dif-selector">Hard
-            <ul>
-                <li>width: ${hard.width}</li>
-                <li>height: ${hard.height}</li>
-                <li>mines: ${hard.mines}</li>
-            </ul>
-            </a>
-        </div>
-        
-        
-        
-    
+        ${str}
         </body>
         </html>`;
 
@@ -359,15 +355,15 @@ function init(filename) {
     var args = parse(filename);
 
     var difficulty = args[0];
-    if (difficulty.startsWith(":easy")) {
-        var dif = easy;
-    } else if (difficulty.startsWith(":mid")) {
-        var dif = mid;
-    } else if (difficulty.startsWith(":hard")) {
-        var dif = hard;
-    } else if (difficulty.startsWith(":debug")) {
-        var dif = debug;
+    
+    for (var i = 0; i < difficulties.length;i++) {
+
+        if (difficulty.includes(difficulties[i].name)){
+            var dif = difficulties[i];
+            break;
+        }
     }
+
 
 
     var seed = args[1];

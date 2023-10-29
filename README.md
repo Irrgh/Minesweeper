@@ -18,7 +18,7 @@ The ``map`` is then converted into a new ``<table>`` of ``<a href=${link}>`` whe
 
 ---
 
-## Performance issues
+## Space complexity analysis
 
 Depending on difficulty of the game the Map size changes.
 
@@ -33,6 +33,8 @@ The smallest ``action`` that can be performed is something like ``-s.0.0`` meani
 
 
 ### Worst-case
+
+[bytecount calculator](bytecount.js)
 
 
 To complete a game of minesweeper in the **absolute** ``worst-case`` (which is impossible to solve) you would need to search or flag every tile. Meaning you have to perform ``height * width`` actions. The number of bytes $b(x,y)$ required to send an ``action`` would be: 

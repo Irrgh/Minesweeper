@@ -39,7 +39,8 @@ The smallest ``action`` that can be performed is something like ``-s.0.0`` meani
 
 To complete a game of minesweeper in the **absolute** ``worst-case`` (which is impossible to solve) you would need to search or flag every tile. Meaning you have to perform ``height * width`` actions. The number of bytes $b(x,y)$ required to send an ``action`` would be: 
 $$ 
-b(x,y) = 6 + \lfloor \log_{10}{x+1}\rfloor + \lfloor \log_{10}{y+1}\rfloor $$
+b(x,y) = 6 + \lfloor \log_{10}{x+1}\rfloor + \lfloor \log_{10}{y+1}\rfloor 
+$$
 
 Which result in the total amount of bytes send in a ``map`` $bm(w,h,s)$ being:
 

@@ -2,7 +2,7 @@
 
   
 
-This is a HW-exercise from my professor after [this](https://web1.hszg.de/scheder-lehre/WE-I/lecture-notes/04-02-static-server.html) class. The goal was to implement minesweeper using **only** static pages without saving any data on the server. This means usage of ``<button>`` and ``<input>`` is impossible. The only things i can work with are the ``request-url`` and ``<a>`` for interactibility. 
+This is a HW-exercise from my professor after [this](https://www.tu-chemnitz.de/informatik/theoretische-informatik/WE-I/lecture-notes/04-02-static-server.html) class. The goal was to implement minesweeper using **only** static pages without saving any data on the server or using JavaScript on the client. This means usage of ``<button>`` and ``<input>`` is impossible. The only things i can work with are the ``request-url`` and ``<a>`` for interactibility. 
 
 
 The main idea behind my implementation is to split the ``request-url`` into differnt tokens.

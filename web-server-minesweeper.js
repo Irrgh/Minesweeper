@@ -1,7 +1,7 @@
 var http = require('http');
 var url = require('url');
 var fs = require('fs');
-const ip = require('ip');
+//const ip = require('ip');
 const { timeStamp } = require('console');
  
 var portnumber = 3001;
@@ -40,7 +40,7 @@ function handleRequests(request, response) {
 }
 
 myServer.listen(portnumber);
-console.log("Now listening on port " + portnumber);
+console.log(`Server available on: http://localhost:3001/minesweeper`);
 
 
 const easy = {name: "easy", height: 10, width: 10, mines: 10 };
@@ -385,7 +385,7 @@ function init(filename) {
     var table = mapToHtmlTable(map, filename, tool);
 
     return `<html>
-    <title>Diese Webseite wurde vom Server generiert</title>
+    <title>No JavaScript No Server State Minesweeper</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="minesweeper.css">
